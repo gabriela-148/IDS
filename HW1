@@ -1,0 +1,23 @@
+Project 1:
+
+Problem 1:
+- In this data set, the following minimums, maximums, and averages were found for each chicken seed that was presented:
+	          min	    max	    mean
+horsebean	  108	    227	    160.2
+linseed	    141	    309	    218.75
+soybean	    158	    329	    246.4285714
+sunflower	  226	    423	    328.9166667
+meatmeal	  153	    380	    276.9090909
+casein	    216	    404	    323.5833333
+
+- Based on this chicken feed data, the chicken food that appears the most beneficial for a thriving poultry business would be sunflower seed because it has the highest min, max, and mean weight among their chickens. With a higher weight means more meat on the chickens which allows more profit for the poultry business. 
+
+Problem 2:
+- In this data set, the following minimums, maximums, and averages were found for each insurance provider ratings:
+	            min	  max	  mean
+GEICO	        4.7	  8.3	  6.5
+Progressive	  6.7	  8.9	  7.666666667
+USAA	        3.8	  8.1	  6.066666667
+
+- Based on this insurance data only, the company I would most likely choose would be Progressive because it has the highest ratings compared to GEICO and USAA. Companies with higher ratings tend to be better with their policies and treat their customers better than companies with lower ratings. 
+
