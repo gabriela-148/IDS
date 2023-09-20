@@ -4,9 +4,9 @@ IDS 9/16/23
 Problem 1:
 A. While addressing the missing values, I used the average of the values in the Assault column because that is where the missing value was located. I used the average because with numeric values it is smarter to take the average of the values and replace empty or null values. 
 B. In my analysis of the data to address any outliers, I did not see any data that would be cosidered noisy or to be an outlier. All of the data presented did not contain negative or were drastically affecting the data range.
-C.
-D.
-E.
+C. When looking at this graph of murder rates, I can see that the states with the highest murder rates are states in the South. While states with the lowest murder rates, are either in the Northeast or Midwest of the United States. 
+D. When analyzing the histogram, a total of 24 states have an assault rate in the range of 100 to 200, while only 2 states have less than 50. 
+E. When analyzing the chart, the states will lower assault ratest tend to have higher murder rates. 
 F. While discretizing the data for US Arrests, I noticed that in states with EXTRA LARGE population sizes (80-100), the amount of assaults were high as well. In states with lower population sizes, the rate of assaults went down, but murder rates tended to be higher.
 
 C: Find min, max, mean, and variance of all numeric attributes in SQL.
