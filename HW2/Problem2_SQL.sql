@@ -38,7 +38,11 @@ select min(Neonatal_mortality_rate) as "Neonatal Min", max(Neonatal_mortality_ra
 from child_mortality;
 
 -- Add a new column called Above_Five Mortality Rate and populate it with appropriate values.
+alter table Child_mortality
+add column Above5_mortality_rate numeric;
 
+update Child_mortality
+set Above5_mortality_rate = (select avg(Under5_mortality_rate) from Child_mortality);
 
 -- Display the entire table again.
 select *
