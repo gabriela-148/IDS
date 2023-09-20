@@ -1,1 +1,149 @@
+Gabriella Huegel
+IDS 9/16/23
+
+Problem 1:
+A. While addressing the missing values, I used the average of the values in the Assault column because that is where the missing value was located. I used the average because with numeric values it is smarter to take the average of the values and replace empty or null values. 
+B. In my analysis of the data to address any outliers, I did not see any data that would be cosidered noisy or to be an outlier. All of the data presented did not contain negative or were drastically affecting the data range.
+C.
+D.
+E.
+F. While discretizing the data for US Arrests, I noticed that in states with EXTRA LARGE population sizes (80-100), the amount of assaults were high as well. In states with lower population sizes, the rate of assaults went down, but murder rates tended to be higher.
+
+C: Find min, max, mean, and variance of all numeric attributes in SQL.
+Murder Min	  Murder Max	      Murder Variance	          Murder Standard Deviation
+  0.8	            17.4	           18.970465306122456	        4.355509764209289
+Assault Min	  Assault Max	      Assault Variance	        Assault Standard Deviation
+  45	            337	             7055.433673469387	        83.99662894110327
+UrbanPop Min	UrbanPop Max	    UrbanPop Variance	        UrbanPop Standard Deviation
+  32	            91	             209.51877551020405	        14.474763400836784
+D: 
+1. Which state has the maximum murder rate?
+  - Georgia, 17.4
+2. List of states in asecnding order of urban population percentages.
+State	            UrbanPop
+Vermont	            32
+West Virginia	      39
+Mississippi	        44
+North Dakota	      44
+North Carolina	    45
+South Dakota	      45
+Alaska	            48
+South Carolina	    48
+Arkansas	          50
+Maine	              51
+Kentucky	          52
+Montana	            53
+Idaho	              54
+New Hampshire	      56
+Iowa	              57
+Alabama	            58
+Tennessee	          59
+Georgia	            60
+Wyoming	            60
+Nebraska	          62
+Virginia	          63
+Indiana	            65
+Kansas	            66
+Louisiana	          66
+Minnesota	          66
+Wisconsin	          66
+Maryland	          67
+Oregon	            67
+Oklahoma	          68
+Missouri	          70
+New Mexico	        70
+Delaware	          72
+Pennsylvania	      72
+Washington	        73
+Michigan	          74
+Ohio	              75
+Connecticut	        77
+Colorado	          78
+Arizona	            80
+Florida	            80
+Texas	              80
+Utah	              80
+Nevada	            81
+Hawaii	            83
+Illinois	          83
+Massachusetts      	85
+New York	          86
+Rhode Island	      87
+New Jersey	        89
+California	        91
+
+3. How many states have murder rates than Arizona? List those states.
+State
+Alabama
+Alaska
+Arkansas
+California
+Florida
+Georgia
+Illinois
+Kentucky
+Louisiana
+Maryland
+Michigan
+Mississippi
+Missouri
+Nevada
+New Mexico
+New York
+North Carolina
+South Carolina
+Tennessee
+Texas
+Virginia
+
+----------------------------
+Problem 2:
+A. In this dataset when I addressed the missing values, I used the same method that I used in the first problem. I used the average of the values in the column because the values were all numeric. 
+B. While analyzing the data, I noticed some drops in mortality rates during 1995 and 2000. While there were increases in mortality rates in the early 2000s. The reason for this could be increased access to healthcare or increased access to birth control in the U.S. Also, when discretizing the data, I noticed that Under-5 mortality rates tend to be much higher than neonatal mortality rates. The reason for this could be an increase in birth defects in children or an increase in premature births that result in death. 
+
+C: 
+
+2. Which years have the lowest and highest infant mortality years, respectively?
+3. In what years the neonatal mortality rates were above average?
+  - 1990, 1991, 1992, 1993, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003
+4. Display the sorted infant mortality rates in descending order.
+Infant_mortality_rate
+64.8
+63.9
+63.1
+62.3
+61.4
+60.5
+59.4
+58.2
+56.9
+55.4
+53.9
+52.1
+49.10833333
+49.10833333
+49.10833333
+48.6
+46.9
+45.1
+43.4
+40.3
+38.8
+37.4
+36
+34.7
+33.6
+31.4
+30.5
+
+5. Display min, max, mean, variance, and standard deviation for each mortality rate.
+Under 5 Min	      Under 5 Max	          Under 5 Variance	          Under 5 Standard Deviation
+    40.8	            93.4	               332.5495581202439	         18.235941382891202
+Infant Min	      Infant Max	          Infant Variance	            Infant Standard Deviation
+    30.5	            64.8	              118.8830128205129	          10.903348697556769
+Neonatal Min	    Neonatal Max	        Neonatal Variance	          Neonatal Standard Deviation
+    18.6	            36.8	              34.5308307692307	          5.876293965522036
+
+6. Add a new column called Above-Five Mortality Rate and populate it with appropriate values. 
+  - When I added the new column, I populated the the column with the average of the entire Under_5 mortality rate column. Since we do not have access to any information about the above 5 mortality rates, the best thing to do is to take the average of the column and populate the new coumn with this value. 
 
