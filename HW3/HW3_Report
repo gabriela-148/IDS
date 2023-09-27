@@ -1,1 +1,26 @@
-FOR ALL INFO ON PROJECT
+Part 1 (SQL):
+1. Delete all rows with population = 0. Perform further data cleaning for other attributes, as necessary.
+    Code:
+    delete from Life_expectancy where Population is 0 or Population is null;
+
+    select * from Life_expectancy;
+    
+2. Display total count of countries after data cleaning.
+    select count(Country) from Life_expectancy;
+
+3. List of countries with the highest and lowest average mortality rates (years 2010-2015)
+    select Country, Adult_Mortality, year from Life_expectancy
+    where Adult_Mortality = (select max(Adult_Mortality) from Life_expectancy)
+    or Adult_Mortality = (select min(Adult_Mortality) from Life_expectancy) and year between 2010 and 2015
+    group by Country;
+
+4. List of countries with the highest and lowest average population (years 2010-2015)
+    select Country, avg(Population) as Avg_Population from Life_expectancy
+    where year between 2010 and 2015
+    group by Country;
+
+5. List of countries with the highest and lowest average GDP (years 2010-2015)
+
+6. List of countries with the highest and lowest average Schooling  (years 2010-2015)
+7. Which countries have the highest and lowest average alcohol consumption (years 2010-2015)?
+8. Do densely populated countries tend to have lower life expectancy?
