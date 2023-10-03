@@ -1166,6 +1166,19 @@ where Adult_Mortality is null;
 
 select * from expectancy;
 
+--Removing outliers outside +/- 3 standard deviation
+set @avg_expectancy = (select avg(Life_expectancy) from expectancy);
+set @std_expectancy = (select STD(Life_Expectancy) from expectancy);
+
+delete from expectancy
+where ((Life_expectancy - @avg_expectancy) / @std_expectancy) < -3 and ((Life_expectancy - @avg_expectancy) / @std_expectancy) > 3;
+--Testing if outliers were removed
+Select * from
+(Select Country, Life_expectancy,
+(Life_expectancy - avg(Life_expectancy) over()) / STD(Life_expectancy) over() as zscore
+from expectancy) as score_table
+where zscore > 3 or zscore < -3;
+
 --Display total count of countries after data cleaning.
 select count(Country) from expectancy;
 
