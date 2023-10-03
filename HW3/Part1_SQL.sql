@@ -1123,6 +1123,46 @@ INSERT INTO expectancy(Country,Year,Life_Expectancy,Adult_Mortality,Alcohol,Perc
 
 --Delete all rows with population = 0. Perform further data cleaning for other attributes, as necessary.
 delete from expectancy where Population is 0 or Population is null;
+SET @life_avg = (SELECT avg(Life_Expectancy) from expectancy);
+SET @school_avg = (SELECT avg(Schooling) from expectancy);
+SET @gdp_avg = (SELECT avg(GDP) from expectancy);
+SET @tot_avg = (SELECT avg(Total_Expenditure) from expectancy);
+SET @bmi_avg = (SELECT avg(BMI) from expectancy);
+SET @percent_avg = (SELECT avg(Percentage_Expenditure) from expectancy);
+SET @alc_avg = (SELECT avg(Alcohol) from expectancy);
+SET @adult_avg = (SELECT avg(Adult_Mortality) from expectancy);
+
+update expectancy
+set Life_Expectancy = @life_avg
+where Life_Expectancy is null;
+
+update expectancy
+set Schooling = @school_avg
+where Schooling is null;
+
+update expectancy
+set GDP = @gdp_avg
+where GDP is null;
+
+update expectancy
+set Total_Expenditure = @tot_avg
+where Total_Expenditure is null;
+
+update expectancy
+set BMI = @bmi_avg
+where BMI is null;
+
+update expectancy
+set Percentage_Expenditure = @percent_avg
+where Percentage_Expenditure is null;
+
+update expectancy
+set Alcohol = @alc_avg
+where Alcohol is null;
+
+update expectancy
+set Adult_Mortality = @adult_avg
+where Adult_Mortality is null;
 
 select * from expectancy;
 
@@ -1130,44 +1170,49 @@ select * from expectancy;
 select count(Country) from expectancy;
 
 --List of countries with the highest and lowest average mortality rates (years 2010-2015)
+set @max_adult = (select max(Adult_Mortality) from expectancy);
+set @min_adult = (select min(Adult_Mortality) from expectancy);
+
 select Country, Adult_Mortality, year from expectancy
-where Adult_Mortality = (select max(Adult_Mortality) from expectancy)
-or Adult_Mortality = (select min(Adult_Mortality) from expectancy) and year between 2010 and 2015
-group by Country;
+where Adult_Mortality = @max_adult
+or Adult_Mortality = @min_adult and year between 2010 and 2015;
 
 --List of countries with the highest and lowest average population (years 2010-2015)
+set @max_pop = (select max(Population) from expectancy);
+set @min_pop = (select min(Population) from expectancy);
+
 select Country, Population, year from expectancy
-where Population = (select max(Population) from expectancy)
-or Population = (select min(Population) from expectancy) and year between 2010 and 2015
-group by Country;
+where Population = @max_pop
+or Population = @min_pop and year between 2010 and 2015;
 
 --List of countries with the highest and lowest average GDP (years 2010-2015)
+set @max_gdp = (select max(GDP) from expectancy);
+set @min_gdp = (select min(GDP) from expectancy);
+
 select Country, GDP, year from expectancy
-where GDP = (select max(GDP) from expectancy)
-or GDP = (select min(GDP) from expectancy) and year between 2010 and 2015
-group by Country;
+where GDP = @max_gdp
+or GDP = @min_gdp and year between 2010 and 2015;
 
 --List of countries with the highest and lowest average Schooling  (years 2010-2015)
+set @max_school = (select max(Schooling) from expectancy);
+set @min_school = (select min(Schooling) from expectancy);
+
 select Country, Schooling, year from expectancy
-where Schooling = (select max(Schooling) from expectancy)
-or Schooling = (select min(Schooling) from expectancy) and year between 2010 and 2015
-group by Country;
---limit by 1 bc two countries with 0
-select Country, Schooling, year from expectancy
-where Schooling = (select max(Schooling) from expectancy)
-or Schooling = (select min(Schooling) from expectancy) and year between 2010 and 2015
-group by Country
-limit 2;
+where Schooling = @max_school
+or Schooling = @min_school and year between 2010 and 2015;
 
 --Which countries have the highest and lowest average alcohol consumption (years 2010-2015)?
+set @max_alc = (select max(Alcohol) from expectancy);
+set @min_alc = (select min(Alcohol) from expectancy);
+
 select Country, Alcohol, year from expectancy
-where Alcohol = (select max(Alcohol) from expectancy)
-or Alcohol = (select min(Alcohol) from expectancy) and year between 2010 and 2015
-group by Country;
+where Alcohol = @max_alc
+or Alcohol = @min_alc and year between 2010 and 2015;
 
 --Do densely populated countries tend to have lower life expectancy?
--- Yes, as the population gets denser the life expectancy tends to decrease rather than increase.
-select Country, Population, Life_expectancy from expectancy
-where Population > (select avg(Population) from expectancy)
---and Life_expectancy > (select avg(Life_expectancy) from expectancy)
+-- No, as the population gets denser the life expectancy tends to be higher compared to countries with less dense populations.
+set @avg_pop = (select avg(Population) from expectancy);
+
+select Country, Population, Life_Expectancy from expectancy
+where Population > @avg_pop
 order by Population desc;
