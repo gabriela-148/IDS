@@ -1178,6 +1178,7 @@ where Adult_Mortality = @max_adult
 or Adult_Mortality = @min_adult and year between 2010 and 2015;
 
 --List of countries with the highest and lowest average population (years 2010-2015)
+--get avg per country and select highest and lowest
 set @max_pop = (select max(Population) from expectancy);
 set @min_pop = (select min(Population) from expectancy);
 
