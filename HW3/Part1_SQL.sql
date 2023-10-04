@@ -1183,50 +1183,83 @@ where zscore > 3 or zscore < -3;
 select count(Country) from expectancy;
 
 --List of countries with the highest and lowest average mortality rates (years 2010-2015)
-set @max_adult = (select max(Adult_Mortality) from expectancy);
-set @min_adult = (select min(Adult_Mortality) from expectancy);
-
-select Country, Adult_Mortality, year from expectancy
-where Adult_Mortality = @max_adult
-or Adult_Mortality = @min_adult and year between 2010 and 2015;
+(SELECT Country, AVG(Adult_Mortality) AS Avg_Mortality
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Mortality DESC
+LIMIT 1)
+UNION
+(SELECT Country, AVG(Adult_Mortality) AS Avg_Mortality
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Mortality
+LIMIT 1);
 
 --List of countries with the highest and lowest average population (years 2010-2015)
---get avg per country and select highest and lowest
-set @max_pop = (select max(Population) from expectancy);
-set @min_pop = (select min(Population) from expectancy);
-
-select Country, Population, year from expectancy
-where Population = @max_pop
-or Population = @min_pop and year between 2010 and 2015;
+(SELECT Country, AVG(Population) AS Avg_Population
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Population DESC
+LIMIT 1)
+UNION
+(SELECT Country, AVG(Population) AS Avg_Population
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Population
+LIMIT 1);
 
 --List of countries with the highest and lowest average GDP (years 2010-2015)
-set @max_gdp = (select max(GDP) from expectancy);
-set @min_gdp = (select min(GDP) from expectancy);
+(SELECT Country, AVG(GDP) AS Avg_GDP
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_GDP DESC
+LIMIT 1)
+UNION
+(SELECT Country, AVG(GDP) AS Avg_GDP
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_GDP
+LIMIT 1);
 
-select Country, GDP, year from expectancy
-where GDP = @max_gdp
-or GDP = @min_gdp and year between 2010 and 2015;
 
 --List of countries with the highest and lowest average Schooling  (years 2010-2015)
-set @max_school = (select max(Schooling) from expectancy);
-set @min_school = (select min(Schooling) from expectancy);
-
-select Country, Schooling, year from expectancy
-where Schooling = @max_school
-or Schooling = @min_school and year between 2010 and 2015;
+(SELECT Country, AVG(Schooling) AS Avg_Schooling
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Schooling DESC
+LIMIT 1)
+UNION
+(SELECT Country, AVG(Schooling) AS Avg_Schooling
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Schooling
+LIMIT 1);
 
 --Which countries have the highest and lowest average alcohol consumption (years 2010-2015)?
-set @max_alc = (select max(Alcohol) from expectancy);
-set @min_alc = (select min(Alcohol) from expectancy);
-
-select Country, Alcohol, year from expectancy
-where Alcohol = @max_alc
-or Alcohol = @min_alc and year between 2010 and 2015;
+(SELECT Country, AVG(Alcohol) AS Avg_Alc
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Alc DESC
+LIMIT 1)
+UNION
+(SELECT Country, AVG(Alcohol) AS Avg_Alc
+FROM expectancy
+WHERE year BETWEEN 2010 AND 2015
+GROUP BY Country
+ORDER BY Avg_Alc
+LIMIT 1);
 
 --Do densely populated countries tend to have lower life expectancy?
--- No, as the population gets denser the life expectancy tends to be higher compared to countries with less dense populations.
-set @avg_pop = (select avg(Population) from expectancy);
-
-select Country, Population, Life_Expectancy from expectancy
-where Population > @avg_pop
+-- Yes, as the population gets denser the life expectancy tends to be lower compared to countries with less dense populations.
+select Country, Life_Expectancy, Population
+from expectancy
 order by Population desc;
